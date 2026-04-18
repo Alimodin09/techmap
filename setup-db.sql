@@ -19,6 +19,9 @@ create table public.issue_reports (
   issue_type text not null,
   description text not null,
   status text check (status in ('Pending', 'Ongoing', 'Resolved')) default 'Pending',
+  is_archived boolean default false,
+  archived_at timestamp with time zone,
+  deleted_at timestamp with time zone,
   latitude double precision not null,
   longitude double precision not null,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,
@@ -51,6 +54,11 @@ create policy "Users can update own profile." on public.profiles for update usin
 create policy "Anyone can view issue reports" on public.issue_reports for select using (true);
 create policy "Authenticated users can create issue reports" on public.issue_reports for insert with check (auth.role() = 'authenticated');
 create policy "Admins can update issue reports" on public.issue_reports for update using (
+  exists (
+    select 1 from public.profiles
+    where profiles.id = auth.uid() and profiles.role = 'admin'
+  )
+) with check (
   exists (
     select 1 from public.profiles
     where profiles.id = auth.uid() and profiles.role = 'admin'
