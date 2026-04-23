@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import UserSidebar from '@/components/shared/UserSidebar'
 import MobileHeader from '@/components/shared/MobileHeader'
 import type { ReactNode } from 'react'
@@ -17,6 +17,18 @@ export default function UserLayoutClient({
   userName,
 }: UserLayoutClientProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+
+  const openDrawer = useCallback(() => {
+    setIsDrawerOpen(true)
+  }, [])
+
+  const closeDrawer = useCallback(() => {
+    setIsDrawerOpen(false)
+  }, [])
+
+  const toggleDrawer = useCallback(() => {
+    setIsDrawerOpen((current) => !current)
+  }, [])
 
   // Close drawer on escape key
   useEffect(() => {
@@ -37,7 +49,8 @@ export default function UserLayoutClient({
       {/* Mobile Header - z-50 */}
       <MobileHeader
         isDrawerOpen={isDrawerOpen}
-        onDrawerToggle={() => setIsDrawerOpen(!isDrawerOpen)}
+        onDrawerToggle={toggleDrawer}
+        onLogoClick={closeDrawer}
         userName={userName}
         userEmail={userEmail}
       />
@@ -49,7 +62,7 @@ export default function UserLayoutClient({
           userEmail={userEmail}
           userName={userName}
           isOpen={isDrawerOpen}
-          onClose={() => setIsDrawerOpen(false)}
+          onClose={closeDrawer}
           isMobile={true}
         />
 
