@@ -56,28 +56,28 @@ export default function ProfileForm({ profile, onSuccess }: ProfileFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
       <div>
-        <h3 className="text-sm font-semibold text-slate-900 sm:text-base md:text-lg">Edit Profile</h3>
-        <p className="mt-0.5 text-xs text-slate-500 sm:mt-1 sm:text-sm">Update your basic account details.</p>
+        <h3 className="text-base font-semibold text-slate-900 sm:text-lg">Edit Profile</h3>
+        <p className="mt-1 text-xs text-slate-500 sm:text-sm">Update your basic account details.</p>
       </div>
 
       {error && (
-        <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm">
+        <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
         </div>
       )}
       {message && (
-        <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs text-emerald-700 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm">
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
           {message}
         </div>
       )}
 
-      <div className="space-y-1 sm:space-y-2">
-        <label className="block text-xs font-medium text-slate-700 sm:text-sm">Full Name</label>
+      <div className="space-y-2">
+        <label className="block text-sm font-medium text-slate-700">Full Name</label>
         <input
           type="text"
-          className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-xs text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
+          className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           placeholder="Enter your full name"
@@ -85,13 +85,13 @@ export default function ProfileForm({ profile, onSuccess }: ProfileFormProps) {
         />
       </div>
 
-      <div className="space-y-1 sm:space-y-2">
-        <label className="block text-xs font-medium text-slate-700 sm:text-sm">
+      <div className="space-y-2">
+        <label className="block text-sm font-medium text-slate-700">
           Phone Number <span className="font-normal text-slate-500">(Optional)</span>
         </label>
         <input
           type="tel"
-          className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-xs text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
+          className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder="Enter your phone number"
@@ -99,13 +99,13 @@ export default function ProfileForm({ profile, onSuccess }: ProfileFormProps) {
         />
       </div>
 
-      <div className="space-y-1 sm:space-y-2">
-        <label className="block text-xs font-medium text-slate-700 sm:text-sm">
+      <div className="space-y-2">
+        <label className="block text-sm font-medium text-slate-700">
           Department/Office <span className="font-normal text-slate-500">(Optional)</span>
         </label>
         <input
           type="text"
-          className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-xs text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
+          className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
           value={department}
           onChange={(e) => setDepartment(e.target.value)}
           placeholder="e.g. IT Department, Lab 4B"
@@ -115,7 +115,7 @@ export default function ProfileForm({ profile, onSuccess }: ProfileFormProps) {
 
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center rounded-lg bg-sky-600 px-3 py-2.5 text-xs font-semibold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-60 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
+        className="inline-flex w-full items-center justify-center rounded-xl bg-sky-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-60"
         disabled={loading}
       >
         {loading ? 'Saving...' : 'Save Changes'}

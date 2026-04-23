@@ -71,29 +71,29 @@ export default function PasswordChangeForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
       <div>
-        <h3 className="text-sm font-semibold text-slate-900 sm:text-base md:text-lg">Change Password</h3>
-        <p className="mt-0.5 text-xs text-slate-500 sm:mt-1 sm:text-sm">Use a strong password you have not used before.</p>
+        <h3 className="text-base font-semibold text-slate-900 sm:text-lg">Change Password</h3>
+        <p className="mt-1 text-xs text-slate-500 sm:text-sm">Use a strong password you have not used before.</p>
       </div>
 
       {error && (
-        <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm">
+        <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
         </div>
       )}
       {message && (
-        <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs text-emerald-700 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm">
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
           {message}
         </div>
       )}
 
-      <div className="space-y-1 sm:space-y-2">
-        <label className="block text-xs font-medium text-slate-700 sm:text-sm">New Password</label>
+      <div className="space-y-2">
+        <label className="block text-sm font-medium text-slate-700">New Password</label>
         <div className="relative">
           <input
             type={showPassword ? 'text' : 'password'}
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 pr-10 text-xs text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm sm:pr-12"
+            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-12 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             placeholder="Enter new password"
@@ -101,7 +101,7 @@ export default function PasswordChangeForm() {
           />
           <button
             type="button"
-            className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex h-7 w-7 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-400 sm:h-9 sm:w-9 sm:right-3"
+            className="absolute right-3 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-400"
             onClick={() => setShowPassword((current) => !current)}
             disabled={loading}
             aria-label={showPassword ? 'Hide password' : 'Show password'}
@@ -112,12 +112,12 @@ export default function PasswordChangeForm() {
         </div>
       </div>
 
-      <div className="space-y-1 sm:space-y-2">
-        <label className="block text-xs font-medium text-slate-700 sm:text-sm">Confirm Password</label>
+      <div className="space-y-2">
+        <label className="block text-sm font-medium text-slate-700">Confirm Password</label>
         <div className="relative">
           <input
             type={showPassword ? 'text' : 'password'}
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 pr-10 text-xs text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm sm:pr-12"
+            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-12 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm new password"
@@ -125,7 +125,7 @@ export default function PasswordChangeForm() {
           />
           <button
             type="button"
-            className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex h-7 w-7 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-400 sm:h-9 sm:w-9 sm:right-3"
+            className="absolute right-3 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-400"
             onClick={() => setShowPassword((current) => !current)}
             disabled={loading}
             aria-label={showPassword ? 'Hide password' : 'Show password'}
@@ -138,7 +138,7 @@ export default function PasswordChangeForm() {
 
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center rounded-lg bg-sky-600 px-3 py-2.5 text-xs font-semibold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-60 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
+        className="inline-flex w-full items-center justify-center rounded-xl bg-sky-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-60"
         disabled={loading}
       >
         {loading ? 'Updating...' : 'Update Password'}
