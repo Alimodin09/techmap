@@ -20,7 +20,7 @@ export default function MobileHeader({
   const accountDisplayName = userName || userEmail?.split('@')[0] || 'User'
 
   return (
-    <header className="sticky top-0 z-[60] grid grid-cols-[auto_1fr_auto] items-center gap-2 border-b border-slate-200 bg-white px-4 py-4 md:hidden">
+    <header className="sticky top-0 z-[60] grid h-16 grid-cols-[auto_1fr_auto] items-center gap-2 border-b border-slate-200 bg-white px-4 md:hidden">
       {/* Logo */}
       <Link
         href="/dashboard"

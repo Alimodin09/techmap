@@ -42,7 +42,7 @@ export default function UserSidebar({
         {/* Overlay */}
         {isOpen && (
           <div
-            className="fixed inset-0 z-30 bg-black/50 md:hidden pointer-events-auto"
+            className="fixed inset-x-0 bottom-0 top-16 z-30 bg-black/50 md:hidden pointer-events-auto"
             onClick={onClose}
             aria-label="Close navigation"
           />
@@ -50,22 +50,12 @@ export default function UserSidebar({
 
         {/* Drawer */}
         <aside
-          className={`fixed left-0 top-0 z-40 h-screen w-72 transform overflow-y-auto border-r border-slate-200 bg-gradient-to-br from-[#0b132b] via-[#111f46] to-[#0c2446] px-4 py-6 text-slate-100 transition-transform duration-300 ease-out md:hidden ${
+          className={`fixed bottom-0 left-0 top-16 z-40 h-[calc(100dvh-4rem)] w-72 transform overflow-y-auto border-r border-slate-200 bg-gradient-to-br from-[#0b132b] via-[#111f46] to-[#0c2446] px-4 py-4 text-slate-100 transition-transform duration-300 ease-out md:hidden ${
             isOpen ? 'translate-x-0 pointer-events-auto' : '-translate-x-full pointer-events-none'
           }`}
           aria-hidden={!isOpen}
         >
-          <div className="mb-6 rounded-2xl border border-slate-700/70 bg-slate-900/45 p-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">
-              TechMap
-            </p>
-            <h2 className="mt-2 text-lg font-semibold text-white">User Portal</h2>
-            <p className="mt-1 text-xs text-slate-300">
-              Track reports, map issues, and manage your account.
-            </p>
-          </div>
-
-          <nav className="mb-6 flex-1">
+          <nav className="mb-4 flex-1">
             <ul className="space-y-1">
               <li>
                 <Link
