@@ -49,21 +49,23 @@ export default function UserMapViewPage() {
   }, [supabase])
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6">
-      <section className="rounded-3xl bg-slate-900 px-6 py-8 text-white shadow-soft sm:px-8">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">Map View</p>
-        <h1 className="mt-3 text-3xl font-semibold sm:text-4xl">My Reports on Map</h1>
-        <p className="mt-3 max-w-2xl text-sm text-slate-300 sm:text-base">Visualizing the locations of all your reported issues.</p>
+    <div className="mx-auto w-full max-w-6xl space-y-4 sm:space-y-6">
+      <section className="rounded-xl bg-slate-900 px-4 py-6 text-white shadow-soft sm:rounded-3xl sm:px-6 sm:py-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-300 sm:text-sm">Map View</p>
+        <h1 className="mt-2 text-2xl font-semibold text-white sm:mt-3 sm:text-3xl md:text-4xl">My Reports on Map</h1>
+        <p className="mt-2 max-w-2xl text-xs text-slate-300 sm:mt-3 sm:text-sm md:text-base">Visualizing the locations of all your reported issues.</p>
       </section>
 
       {loading ? (
-        <div className="flex h-[600px] items-center justify-center rounded-3xl border border-slate-200 bg-white text-sm font-medium text-slate-500 shadow-sm">Loading points...</div>
+        <div className="flex h-64 items-center justify-center rounded-lg border border-slate-200 bg-white text-xs font-medium text-slate-500 shadow-sm sm:h-96 sm:rounded-2xl md:h-[600px]">
+          Loading points...
+        </div>
       ) : (
-        <div className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-slate-200">
+        <div className="overflow-hidden rounded-lg bg-white p-2 shadow-sm ring-1 ring-slate-200 sm:rounded-2xl sm:p-3 md:rounded-3xl">
           <MapComponent
             mode="multi"
             markers={markers}
-            height="600px"
+            height="300px"
           />
         </div>
       )}

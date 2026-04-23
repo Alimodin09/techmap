@@ -31,35 +31,60 @@ export default async function UserDashboard() {
     .eq('status', 'Resolved')
 
   return (
-    <div className="mx-auto max-w-6xl space-y-8">
-      <section className="relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white px-6 py-8 shadow-soft sm:px-8">
+    <div className="mx-auto w-full max-w-6xl space-y-4 sm:space-y-6 md:space-y-8">
+      {/* Header Section */}
+      <section className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white px-4 py-6 shadow-soft sm:rounded-3xl sm:px-6 sm:py-8">
         <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-cyan-200/50 blur-2xl" />
         <div className="pointer-events-none absolute -bottom-20 left-10 h-40 w-40 rounded-full bg-blue-200/50 blur-2xl" />
-        <p className="relative text-sm font-semibold uppercase tracking-[0.2em] text-cyan-700">Dashboard</p>
-        <h1 className="relative mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">Welcome, {profile?.full_name || 'User'}!</h1>
-        <p className="relative mt-3 max-w-2xl text-sm text-slate-600 sm:text-base">Here is an overview of your submitted technical issues.</p>
+        <p className="relative text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700 sm:text-sm">
+          Dashboard
+        </p>
+        <h1 className="relative mt-2 text-2xl font-semibold text-slate-900 sm:mt-3 sm:text-3xl md:text-4xl">
+          Welcome, {profile?.full_name || 'User'}!
+        </h1>
+        <p className="relative mt-2 max-w-2xl text-xs text-slate-600 sm:mt-3 sm:text-sm md:text-base">
+          Here is an overview of your submitted technical issues.
+        </p>
       </section>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        <div className="rounded-2xl border border-rose-100 bg-gradient-to-br from-rose-50 to-white p-6 shadow-sm">
-          <p className="text-sm font-medium text-rose-700">Pending</p>
-          <p className="mt-3 text-4xl font-bold text-rose-600">{pendingCount || 0}</p>
+      {/* Stats Cards */}
+      <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <div className="rounded-xl border border-rose-100 bg-gradient-to-br from-rose-50 to-white p-4 shadow-sm sm:rounded-2xl sm:p-6">
+          <p className="text-xs font-medium text-rose-700 sm:text-sm">Pending</p>
+          <p className="mt-2 text-3xl font-bold text-rose-600 sm:mt-3 sm:text-4xl">
+            {pendingCount || 0}
+          </p>
         </div>
-        <div className="rounded-2xl border border-amber-100 bg-gradient-to-br from-amber-50 to-white p-6 shadow-sm">
-          <p className="text-sm font-medium text-amber-700">Ongoing</p>
-          <p className="mt-3 text-4xl font-bold text-amber-500">{ongoingCount || 0}</p>
+        <div className="rounded-xl border border-amber-100 bg-gradient-to-br from-amber-50 to-white p-4 shadow-sm sm:rounded-2xl sm:p-6">
+          <p className="text-xs font-medium text-amber-700 sm:text-sm">Ongoing</p>
+          <p className="mt-2 text-3xl font-bold text-amber-500 sm:mt-3 sm:text-4xl">
+            {ongoingCount || 0}
+          </p>
         </div>
-        <div className="rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white p-6 shadow-sm">
-          <p className="text-sm font-medium text-emerald-700">Resolved</p>
-          <p className="mt-3 text-4xl font-bold text-emerald-600">{resolvedCount || 0}</p>
+        <div className="rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white p-4 shadow-sm sm:rounded-2xl sm:p-6">
+          <p className="text-xs font-medium text-emerald-700 sm:text-sm">Resolved</p>
+          <p className="mt-2 text-3xl font-bold text-emerald-600 sm:mt-3 sm:text-4xl">
+            {resolvedCount || 0}
+          </p>
         </div>
       </div>
 
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
-        <h2 className="text-xl font-semibold text-slate-900">Quick Actions</h2>
-        <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-          <Link href="/report-issue" className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-5 py-3 text-sm font-semibold text-white transition hover:from-cyan-400 hover:to-blue-400">Report a New Issue</Link>
-          <Link href="/my-reports" className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-cyan-300 hover:bg-cyan-50">View My Reports</Link>
+      {/* Quick Actions */}
+      <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm sm:rounded-3xl sm:p-6">
+        <h2 className="text-lg font-semibold text-slate-900 sm:text-xl">Quick Actions</h2>
+        <div className="mt-4 flex flex-col gap-2 sm:gap-3 sm:flex-row">
+          <Link
+            href="/report-issue"
+            className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2.5 text-xs font-semibold text-white transition hover:from-cyan-400 hover:to-blue-400 sm:rounded-xl sm:px-5 sm:py-3 sm:text-sm"
+          >
+            Report a New Issue
+          </Link>
+          <Link
+            href="/my-reports"
+            className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-xs font-semibold text-slate-700 transition hover:border-cyan-300 hover:bg-cyan-50 sm:rounded-xl sm:px-5 sm:py-3 sm:text-sm"
+          >
+            View My Reports
+          </Link>
         </div>
       </div>
     </div>

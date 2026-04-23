@@ -71,16 +71,27 @@ export default function AccountSettingsModal({ isOpen, onClose }: AccountSetting
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/70 p-4" onClick={onClose}>
-      <div className="relative z-[10000] max-h-[90vh] w-full max-w-5xl overflow-hidden rounded-3xl bg-white shadow-2xl" onClick={(event) => event.stopPropagation()}>
-        <div className="flex items-start justify-between gap-4 border-b border-slate-200 px-5 py-4 sm:px-6">
-          <div>
-            <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">Account Settings</h2>
-            <p className="mt-1 text-sm text-slate-500 sm:text-base">Update your account details and password.</p>
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/70 p-3 sm:p-4"
+      onClick={onClose}
+    >
+      <div
+        className="relative z-[10000] max-h-[90vh] w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl sm:rounded-3xl"
+        onClick={(event) => event.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="flex flex-col items-start justify-between gap-2 border-b border-slate-200 px-4 py-3 sm:flex-row sm:items-center sm:gap-4 sm:px-6 sm:py-4">
+          <div className="flex-1 min-w-0">
+            <h2 className="text-lg font-semibold text-slate-900 sm:text-xl md:text-2xl">
+              Account Settings
+            </h2>
+            <p className="mt-0.5 text-xs text-slate-500 sm:mt-1 sm:text-sm md:text-base">
+              Update your account details and password.
+            </p>
           </div>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
+            className="inline-flex h-8 w-8 items-center justify-center flex-shrink-0 rounded-full border border-slate-200 text-sm font-bold text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 sm:h-10 sm:w-10 sm:text-base"
             onClick={onClose}
             aria-label="Close account settings"
           >
@@ -88,18 +99,25 @@ export default function AccountSettingsModal({ isOpen, onClose }: AccountSetting
           </button>
         </div>
 
-        <div className="grid gap-4 overflow-y-auto px-5 py-5 sm:px-6 lg:grid-cols-2">
-          {profileError && <div className="alert alert-error">{profileError}</div>}
+        {/* Content */}
+        <div className="grid gap-3 overflow-y-auto px-4 py-4 sm:gap-4 sm:px-6 sm:py-5 md:grid-cols-2">
+          {profileError && (
+            <div className="col-span-full rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-medium text-rose-700 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm">
+              {profileError}
+            </div>
+          )}
 
           {loadingProfile ? (
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm font-medium text-slate-600">Loading account details...</div>
+            <div className="col-span-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-3 text-xs font-medium text-slate-600 sm:rounded-xl sm:px-4 sm:py-4 sm:text-sm">
+              Loading account details...
+            </div>
           ) : (
             <>
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 shadow-sm sm:rounded-xl sm:p-4 md:p-5">
                 <ProfileForm profile={profile} onSuccess={loadProfile} />
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 shadow-sm sm:rounded-xl sm:p-4 md:p-5">
                 <PasswordChangeForm />
               </div>
             </>

@@ -20,33 +20,54 @@ export default async function MyReportsPage() {
   const reports = (data || null) as IssueReport[] | null
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6">
-      <section className="rounded-3xl bg-slate-900 px-6 py-8 text-white shadow-soft sm:px-8">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">My Reports</p>
-        <h1 className="mt-3 text-3xl font-semibold sm:text-4xl">My Submitted Reports</h1>
-        <p className="mt-3 max-w-2xl text-sm text-slate-300 sm:text-base">Review the reports you have submitted and check their current status.</p>
+    <div className="mx-auto w-full max-w-6xl space-y-4 sm:space-y-6">
+      <section className="rounded-xl bg-slate-900 px-4 py-6 text-white shadow-soft sm:rounded-3xl sm:px-6 sm:py-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-300 sm:text-sm">My Reports</p>
+        <h1 className="mt-2 text-2xl font-semibold text-white sm:mt-3 sm:text-3xl md:text-4xl">My Submitted Reports</h1>
+        <p className="mt-2 max-w-2xl text-xs text-slate-300 sm:mt-3 sm:text-sm md:text-base">Review the reports you have submitted and check their current status.</p>
       </section>
 
-      {error && <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700">Error loading reports: {error.message}</div>}
+      {error && (
+        <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-medium text-rose-700 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm">
+          Error loading reports: {error.message}
+        </div>
+      )}
 
       {!reports || reports.length === 0 ? (
-        <div className="rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-slate-200">
-          <p className="text-sm text-slate-600">You haven&apos;t submitted any reports yet.</p>
+        <div className="rounded-xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-200 sm:rounded-3xl sm:p-8">
+          <p className="text-xs text-slate-600 sm:text-sm">You haven&apos;t submitted any reports yet.</p>
         </div>
       ) : (
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-3 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
           {reports.map((report) => (
-            <div key={report.id} className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <div className="flex items-start justify-between gap-3">
-                <h3 className="text-lg font-semibold text-slate-900">{report.name}</h3>
-                <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${getStatusBadgeClass(report.status)}`}>{report.status}</span>
+            <div key={report.id} className="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:rounded-2xl sm:p-5 md:rounded-3xl md:p-6">
+              <div className="flex items-start justify-between gap-2 sm:gap-3">
+                <h3 className="text-sm font-semibold text-slate-900 sm:text-base lg:text-lg">
+                  {report.name}
+                </h3>
+                <span
+                  className={`inline-flex shrink-0 rounded-full px-2 py-1 text-xs font-semibold sm:px-3 sm:py-1 ${getStatusBadgeClass(
+                    report.status
+                  )}`}
+                >
+                  {report.status}
+                </span>
               </div>
-              <p className="mt-4 text-sm leading-6 text-slate-600">
-                <span className="font-semibold text-slate-700">Room:</span> {report.room_lab_number}<br />
-                <span className="font-semibold text-slate-700">Type:</span> {report.issue_type}<br />
-                <span className="font-semibold text-slate-700">Submitted:</span> {new Date(report.created_at).toLocaleDateString()}
+              <p className="mt-3 space-y-1 text-xs leading-5 text-slate-600 sm:mt-4 sm:text-sm sm:leading-6">
+                <div>
+                  <span className="font-semibold text-slate-700">Room:</span> {report.room_lab_number}
+                </div>
+                <div>
+                  <span className="font-semibold text-slate-700">Type:</span> {report.issue_type}
+                </div>
+                <div>
+                  <span className="font-semibold text-slate-700">Submitted:</span>{' '}
+                  {new Date(report.created_at).toLocaleDateString()}
+                </div>
               </p>
-              <p className="mt-4 text-sm leading-6 text-slate-700">{report.description}</p>
+              <p className="mt-3 text-xs leading-5 text-slate-700 sm:mt-4 sm:text-sm sm:leading-6">
+                {report.description}
+              </p>
             </div>
           ))}
         </div>

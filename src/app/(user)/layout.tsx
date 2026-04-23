@@ -1,4 +1,4 @@
-import UserSidebar from '@/components/shared/UserSidebar'
+import UserLayoutClient from './layout-client'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import type { ReactNode } from 'react'
@@ -27,12 +27,12 @@ export default async function UserLayout({ children }: UserLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_15%_20%,#e0f2fe_0%,#f8fafc_35%,#eef2ff_100%)] md:flex">
-      <UserSidebar userEmail={user.email} userName={profile?.full_name} />
-
-      <main className="flex-1 px-4 py-6 sm:px-6 lg:px-10 lg:py-10">
-        {children}
-      </main>
-    </div>
+    <UserLayoutClient
+      userEmail={user.email}
+      userName={profile?.full_name}
+    >
+      {children}
+    </UserLayoutClient>
   )
 }
+
