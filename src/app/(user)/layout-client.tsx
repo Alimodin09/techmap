@@ -18,10 +18,6 @@ export default function UserLayoutClient({
 }: UserLayoutClientProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
-  const openDrawer = useCallback(() => {
-    setIsDrawerOpen(true)
-  }, [])
-
   const closeDrawer = useCallback(() => {
     setIsDrawerOpen(false)
   }, [])
