@@ -88,3 +88,52 @@ $$ language plpgsql security definer;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
+
+-- ============================================================
+-- MIGRATION: Phase 1 — New feature columns (safe to re-run)
+-- Run these in the Supabase SQL Editor
+-- ============================================================
+
+-- Category System
+alter table public.issue_reports
+  add column if not exists category text;
+
+-- Priority Level (defaults to Medium)
+alter table public.issue_reports
+  add column if not exists priority text default 'Medium';
+
+-- Department / Area Filtering
+alter table public.issue_reports
+  add column if not exists department_area text;
+
+-- Image Attachment
+alter table public.issue_reports
+  add column if not exists image_url text;
+
+alter table public.issue_reports
+  add column if not exists image_path text;
+
+-- ============================================================
+-- STORAGE: report-images bucket policies
+-- Create the bucket first via Supabase Dashboard → Storage
+-- Bucket name: report-images (set to Public)
+-- Then run these policies:
+-- ============================================================
+
+-- Allow authenticated users to upload to report-images
+create policy "Authenticated users can upload report images"
+on storage.objects for insert
+to authenticated
+with check (bucket_id = 'report-images');
+
+-- Allow everyone to view report images
+create policy "Anyone can view report images"
+on storage.objects for select
+to public
+using (bucket_id = 'report-images');
+
+-- Allow users to delete their own uploads
+create policy "Users can delete own report images"
+on storage.objects for delete
+to authenticated
+using (bucket_id = 'report-images' and auth.uid()::text = (storage.foldername(name))[1]);

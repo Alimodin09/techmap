@@ -19,6 +19,18 @@ export interface ReportLocation {
   lng: number
 }
 
+export type IssueCategory = 'Equipment' | 'Network' | 'Software' | 'Electrical' | 'Facility' | 'Other'
+
+export type IssuePriority = 'Low' | 'Medium' | 'High' | 'Critical'
+
+export type DepartmentArea =
+  | 'IT Department'
+  | 'Computer Laboratory'
+  | 'Admin Office'
+  | 'Library'
+  | 'Hallway'
+  | 'Other'
+
 export interface IssueReport {
   id: string
   user_id: string
@@ -31,6 +43,17 @@ export interface IssueReport {
   longitude: number
   created_at: string
   updated_at?: string | null
+  // New fields (Phase 1)
+  category?: IssueCategory | string | null
+  priority?: IssuePriority | string | null
+  department_area?: DepartmentArea | string | null
+  image_url?: string | null
+  image_path?: string | null
+  // Existing optional fields
+  is_archived?: boolean
+  archived_at?: string | null
+  deleted_at?: string | null
+  profiles?: { full_name: string | null } | null
 }
 
 export interface MapMarkerData {

@@ -36,7 +36,10 @@ export default function UserMapViewPage() {
             <div>
               <strong>{report.name}</strong><br />
               Status: {report.status}<br />
-              Room: {report.room_lab_number}
+              {report.category && <>Category: {report.category}<br /></>}
+              {report.priority && <>Priority: {report.priority}<br /></>}
+              {report.department_area && <>Area: {report.department_area}<br /></>}
+              Location: {report.room_lab_number}
             </div>
           ),
         }))
